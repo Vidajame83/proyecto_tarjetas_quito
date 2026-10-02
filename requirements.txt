@@ -1,0 +1,19 @@
+# Librerías del proyecto con sus versiones (reproducibilidad).
+# Instalar con:  pip install -r requirements.txt
+# Requiere Python 3.11 o superior.
+
+# Dashboard
+streamlit==1.64.0 # aplicación web del dashboard
+plotly==7.1.0 # gráficos interactivos
+folium==0.20.0 # mapa interactivo (Leaflet + OpenStreetMap)
+
+# Datos
+pandas==3.0.2 # tablas de datos
+numpy==2.4.4 # cálculos numéricos
+openpyxl==3.1.5 # permite a pandas leer el Excel (.xlsx)
+
+# Análisis del notebook
+scipy==1.17.1 # pruebas estadísticas
+matplotlib==3.10.8 # gráficos estáticos
+seaborn==0.13.2 # gráficos estadísticos
+ipykernel==7.3.0 # permite ejecutar el notebook dentro de VS Code

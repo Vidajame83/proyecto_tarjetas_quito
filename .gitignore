@@ -1,0 +1,23 @@
+# --- Archivos que NO se suben a GitHub ---
+
+# Puntos de control automáticos de Jupyter
+.ipynb_checkpoints/
+
+# Archivos compilados de Python
+__pycache__/
+*.pyc
+
+# Entornos virtuales
+.venv/
+venv/
+
+# Secretos y claves (nunca se suben)
+.env
+.streamlit/secrets.toml
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# NOTA: data/crudos/ SÍ se sube. Son datos agregados por día y punto de entrega,
+# sin datos personales (LOPDP), y el dashboard en Streamlit Cloud los necesita.

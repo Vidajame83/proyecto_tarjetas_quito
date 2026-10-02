@@ -1,0 +1,8 @@
+# Tema visual del dashboard (colores y tipografía)
+[theme]
+base = "light"                      # tema claro
+primaryColor = "#1B6CA8"            # color de botones, filtros y pestaña activa
+backgroundColor = "#FFFFFF"         # fondo principal
+secondaryBackgroundColor = "#EEF2F6" # fondo de la barra lateral
+textColor = "#1B2430"               # color del texto
+font = "sans serif"                 # tipografía sin serifa, legible en pantallas

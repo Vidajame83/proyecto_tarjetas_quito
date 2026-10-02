@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_7e8e9c786ac38b94e6ca7604602063b2 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="position:fixed;bottom:25px;left:25px;z-index:9999;background:white;padding:8px 12px;
+            border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,.3);font-size:13px">
+  <b>Tipo de ubicación</b><div><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#2A9D8F;margin-right:6px"></span>Parada</div><div><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#16324F;margin-right:6px"></span>Estación</div><div><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#E07A5F;margin-right:6px"></span>Evento</div><div><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#4F7CAC;margin-right:6px"></span>Terminal</div>
+  <div style="margin-top:4px;color:#555">Tamaño = tarjetas entregadas</div>
+</div>
+    
+            <div class="folium-map" id="map_7e8e9c786ac38b94e6ca7604602063b2" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_7e8e9c786ac38b94e6ca7604602063b2 = L.map(
+                "map_7e8e9c786ac38b94e6ca7604602063b2",
+                {
+                    center: [-0.22, -78.51],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_6544c3b35e7861969131443279883383 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 16,
+  "maxNativeZoom": 16,
+  "noWrap": false,
+  "attribution": "Tiles \u00a9 Esri",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_6544c3b35e7861969131443279883383.addTo(map_7e8e9c786ac38b94e6ca7604602063b2);
+        
+    
+            var tile_layer_da5991253299319d4adab17ca34cd4f4 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 16,
+  "maxNativeZoom": 16,
+  "noWrap": false,
+  "attribution": "Tiles \u00a9 Esri",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_da5991253299319d4adab17ca34cd4f4.addTo(map_7e8e9c786ac38b94e6ca7604602063b2);
+        
+    
+            var tile_layer_bc5aa7f36fcf1da6ed437a420322c0e3 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 16,
+  "maxNativeZoom": 16,
+  "noWrap": false,
+  "attribution": "Tiles \u00a9 Esri",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_bc5aa7f36fcf1da6ed437a420322c0e3.addTo(map_7e8e9c786ac38b94e6ca7604602063b2);
+        
+    
+            var tile_layer_bac7453cb012267d5955df82ea0ff473 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 16,
+  "maxNativeZoom": 16,
+  "noWrap": false,
+  "attribution": "Tiles \u00a9 Esri",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_bac7453cb012267d5955df82ea0ff473.addTo(map_7e8e9c786ac38b94e6ca7604602063b2);
+        
+    
+            var tile_layer_8d524f47a76e31994dc8025b10773e44 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 16,
+  "maxNativeZoom": 16,
+  "noWrap": false,
+  "attribution": "Tiles \u00a9 Esri",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_8d524f47a76e31994dc8025b10773e44.addTo(map_7e8e9c786ac38b94e6ca7604602063b2);
+        
+    
+            var tile_layer_46b381bc54d4f07d21d097eb938b054b = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 16,
+  "maxNativeZoom": 16,
+  "noWrap": false,
+  "attribution": "Tiles \u00a9 Esri",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_46b381bc54d4f07d21d097eb938b054b.addTo(map_7e8e9c786ac38b94e6ca7604602063b2);
+        
+    
+            var circle_marker_ea3051b61f7be5a5062acb4bf45ac88e = L.circleMarker(
+                [-0.2452, -78.5181],
+                {"bubblingMouseEvents": true, "color": "#2A9D8F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2A9D8F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.662694484992652, "stroke": true, "weight": 3}
+            ).addTo(map_7e8e9c786ac38b94e6ca7604602063b2);
+        
+    
+        var popup_e590cc4b1199feea03c7497244688059 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_72366127fb6a7efca95c7ee370bb5ca1 = $(`<div id="html_72366127fb6a7efca95c7ee370bb5ca1" style="width: 100.0%; height: 100.0%;">     <b>Parada Chimbacalle (Trolebus)</b><br>     Tipo: Parada<br>     Tarjetas: 1,300 (1.1 % del total)<br>     Universal: 754 · Reducida: 499 ·     Preferencial: 47<br>     Días con entregas: 42<br>     Tarjetas por jornada: 31     </div>`)[0];
+                popup_e590cc4b1199feea03c7497244688059.setContent(html_72366127fb6a7efca95c7ee370bb5ca1);
+            
+        
+
+        circle_marker_ea3051b61f7be5a5062acb4bf45ac88e.bindPopup(popup_e590cc4b1199feea03c7497244688059)
+        ;
+
+        
+    
+    
+            circle_marker_ea3051b61f7be5a5062acb4bf45ac88e.bindTooltip(
+                `<div>
+                     Chimbacalle: 1,300 tarjetas
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_67b9211a83ba23f567dd047a15410bdc = L.circleMarker(
+                [-0.2022, -78.4928],
+                {"bubblingMouseEvents": true, "color": "#2A9D8F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2A9D8F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 15.456761350209735, "stroke": true, "weight": 3}
+            ).addTo(map_7e8e9c786ac38b94e6ca7604602063b2);
+        
+    
+        var popup_dd49991eb277923f0199da026a0a4d56 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_a88a3d62a74ad3258a7d303a668182be = $(`<div id="html_a88a3d62a74ad3258a7d303a668182be" style="width: 100.0%; height: 100.0%;">     <b>Parada Colon (Trolebus / Ecovia)</b><br>     Tipo: Parada<br>     Tarjetas: 1,980 (1.6 % del total)<br>     Universal: 1,504 · Reducida: 422 ·     Preferencial: 54<br>     Días con entregas: 36<br>     Tarjetas por jornada: 55     </div>`)[0];
+                popup_dd49991eb277923f0199da026a0a4d56.setContent(html_a88a3d62a74ad3258a7d303a668182be);
+            
+        
+
+        circle_marker_67b9211a83ba23f567dd047a15410bdc.bindPopup(popup_dd49991eb277923f0199da026a0a4d56)
+        ;
+
+        
+    
+    
+            circle_marker_67b9211a83ba23f567dd047a15410bdc.bindTooltip(
+                `<div>
+                     Colón: 1,980 tarjetas
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d157db9ed9a4bf984bed3dfa8c19c16e = L.circleMarker(
+                [-0.2524, -78.5214],
+                {"bubblingMouseEvents": true, "color": "#16324F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#16324F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 40.0, "stroke": true, "weight": 3}
+            ).addTo(map_7e8e9c786ac38b94e6ca7604602063b2);
+        
+    
+        var popup_04ea69a5de20ee812fd476eec4359e07 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_97f32e1bf277095018562fc7d5415730 = $(`<div id="html_97f32e1bf277095018562fc7d5415730" style="width: 100.0%; height: 100.0%;">     <b>Terminal Sur – El Recreo</b><br>     Tipo: Estación<br>     Tarjetas: 25,594 (21.2 % del total)<br>     Universal: 18,300 · Reducida: 6,323 ·     Preferencial: 971<br>     Días con entregas: 199<br>     Tarjetas por jornada: 129     </div>`)[0];
+                popup_04ea69a5de20ee812fd476eec4359e07.setContent(html_97f32e1bf277095018562fc7d5415730);
+            
+        
+
+        circle_marker_d157db9ed9a4bf984bed3dfa8c19c16e.bindPopup(popup_04ea69a5de20ee812fd476eec4359e07)
+        ;
+
+        
+    
+    
+            circle_marker_d157db9ed9a4bf984bed3dfa8c19c16e.bindTooltip(
+                `<div>
+                     El Recreo: 25,594 tarjetas
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d3111cd47905342c927d3bb0395dd02f = L.circleMarker(
+                [-0.2141, -78.5033],
+                {"bubblingMouseEvents": true, "color": "#2A9D8F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2A9D8F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.052297413172514, "stroke": true, "weight": 3}
+            ).addTo(map_7e8e9c786ac38b94e6ca7604602063b2);
+        
+    
+        var popup_046215a12bde424c8085cb6c203bcad9 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_57188252a020fd2efcc73a2b168c203a = $(`<div id="html_57188252a020fd2efcc73a2b168c203a" style="width: 100.0%; height: 100.0%;">     <b>Parada Espana (Ecovia)</b><br>     Tipo: Parada<br>     Tarjetas: 811 (0.7 % del total)<br>     Universal: 573 · Reducida: 213 ·     Preferencial: 25<br>     Días con entregas: 47<br>     Tarjetas por jornada: 17     </div>`)[0];
+                popup_046215a12bde424c8085cb6c203bcad9.setContent(html_57188252a020fd2efcc73a2b168c203a);
+            
+        
+
+        circle_marker_d3111cd47905342c927d3bb0395dd02f.bindPopup(popup_046215a12bde424c8085cb6c203bcad9)
+        ;
+
+        
+    
+    
+            circle_marker_d3111cd47905342c927d3bb0395dd02f.bindTooltip(
+                `<div>
+                     España: 811 tarjetas
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a0741659f13324cc5c2a6c8b65c68235 = L.circleMarker(
+                [-0.1794, -78.4814],
+                {"bubblingMouseEvents": true, "color": "#2A9D8F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2A9D8F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 13.89494988258389, "stroke": true, "weight": 3}
+            ).addTo(map_7e8e9c786ac38b94e6ca7604602063b2);
+        
+    
+        var popup_51fef7da189db823dc5dbdd3b7b59c05 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_0418a38863d4f9b2d6de93dfacb9ce1a = $(`<div id="html_0418a38863d4f9b2d6de93dfacb9ce1a" style="width: 100.0%; height: 100.0%;">     <b>Parada Estadio (Ecovia)</b><br>     Tipo: Parada<br>     Tarjetas: 1,380 (1.1 % del total)<br>     Universal: 1,145 · Reducida: 192 ·     Preferencial: 43<br>     Días con entregas: 31<br>     Tarjetas por jornada: 45     </div>`)[0];
+                popup_51fef7da189db823dc5dbdd3b7b59c05.setContent(html_0418a38863d4f9b2d6de93dfacb9ce1a);
+            
+        
+
+        circle_marker_a0741659f13324cc5c2a6c8b65c68235.bindPopup(popup_51fef7da189db823dc5dbdd3b7b59c05)
+        ;
+
+        
+    
+    
+            circle_marker_a0741659f13324cc5c2a6c8b65c68235.bindTooltip(
+                `<div>
+                     Estadio: 1,380 tarjetas
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5932b3615e609137d6947abfa1e524c3 = L.circleMarker(
+                [-0.3286, -78.5598],
+                {"bubblingMouseEvents": true, "color": "#16324F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#16324F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 25.50140402452792, "stroke": true, "weight": 3}
+            ).addTo(map_7e8e9c786ac38b94e6ca7604602063b2);
+        
+    
+        var popup_abb7799d096407e0c222968e416e4940 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_49ca7aac8a95c70d87075893e266f3f6 = $(`<div id="html_49ca7aac8a95c70d87075893e266f3f6" style="width: 100.0%; height: 100.0%;">     <b>Terminal Sur Ecovia – Guamani</b><br>     Tipo: Estación<br>     Tarjetas: 8,420 (7.0 % del total)<br>     Universal: 6,388 · Reducida: 1,809 ·     Preferencial: 223<br>     Días con entregas: 200<br>     Tarjetas por jornada: 42     </div>`)[0];
+                popup_abb7799d096407e0c222968e416e4940.setContent(html_49ca7aac8a95c70d87075893e266f3f6);
+            
+        
+
+        circle_marker_5932b3615e609137d6947abfa1e524c3.bindPopup(popup_abb7799d096407e0c222968e416e4940)
+        ;
+
+        
+    
+    
+            circle_marker_5932b3615e609137d6947abfa1e524c3.bindTooltip(
+                `<div>
+                     Guamaní: 8,420 tarjetas
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_335d7fd5f8edddee1711cb7c042c9f4d = L.circleMarker(
+                [-0.1642, -78.4839],
+                {"bubblingMouseEvents": true, "color": "#2A9D8F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2A9D8F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14.490363373824627, "stroke": true, "weight": 3}
+            ).addTo(map_7e8e9c786ac38b94e6ca7604602063b2);
+        
+    
+        var popup_971863c7f5abd53077da5a6309025c63 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_ff622bf012f96b3e88a87071a9e327ad = $(`<div id="html_ff622bf012f96b3e88a87071a9e327ad" style="width: 100.0%; height: 100.0%;">     <b>Parada Jipijapa (Metro / Ecovia)</b><br>     Tipo: Parada<br>     Tarjetas: 1,596 (1.3 % del total)<br>     Universal: 1,388 · Reducida: 171 ·     Preferencial: 37<br>     Días con entregas: 45<br>     Tarjetas por jornada: 35     </div>`)[0];
+                popup_971863c7f5abd53077da5a6309025c63.setContent(html_ff622bf012f96b3e88a87071a9e327ad);
+            
+        
+
+        circle_marker_335d7fd5f8edddee1711cb7c042c9f4d.bindPopup(popup_971863c7f5abd53077da5a6309025c63)
+        ;
+
+        
+    
+    
+            circle_marker_335d7fd5f8edddee1711cb7c042c9f4d.bindTooltip(
+                `<div>
+                     Jipijapa: 1,596 tarjetas
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_552ce8b3a7d5b3e154bb6a569e692040 = L.circleMarker(
+                [-0.2541, -78.5127],
+                {"bubblingMouseEvents": true, "color": "#2A9D8F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2A9D8F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 11.89732682682843, "stroke": true, "weight": 3}
+            ).addTo(map_7e8e9c786ac38b94e6ca7604602063b2);
+        
+    
+        var popup_1881a6f6212e0446e2d1a1104f97073d = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_3bdcc7a3c11fa571f2693b5b23f752af = $(`<div id="html_3bdcc7a3c11fa571f2693b5b23f752af" style="width: 100.0%; height: 100.0%;">     <b>Parada La Colina (Ecovia)</b><br>     Tipo: Parada<br>     Tarjetas: 770 (0.6 % del total)<br>     Universal: 542 · Reducida: 204 ·     Preferencial: 24<br>     Días con entregas: 28<br>     Tarjetas por jornada: 28     </div>`)[0];
+                popup_1881a6f6212e0446e2d1a1104f97073d.setContent(html_3bdcc7a3c11fa571f2693b5b23f752af);
+            
+        
+
+        circle_marker_552ce8b3a7d5b3e154bb6a569e692040.bindPopup(popup_1881a6f6212e0446e2d1a1104f97073d)
+        ;
+
+        
+    
+    
+            circle_marker_552ce8b3a7d5b3e154bb6a569e692040.bindTooltip(
+                `<div>
+                     La Colina: 770 tarjetas
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_329293b66645fc052e4e3fa48ee559f2 = L.circleMarker(
+                [-0.1549, -78.4868],
+                {"bubblingMouseEvents": true, "color": "#16324F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#16324F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 33.786361658085994, "stroke": true, "weight": 3}
+            ).addTo(map_7e8e9c786ac38b94e6ca7604602063b2);
+        
+    
+        var popup_5d8cea06f8cc8a3be9657d0a43e99ba8 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_63d492a9df4d001e42700df1eff11e8f = $(`<div id="html_63d492a9df4d001e42700df1eff11e8f" style="width: 100.0%; height: 100.0%;">     <b>Estacion Multimodal El Labrador</b><br>     Tipo: Estación<br>     Tarjetas: 17,094 (14.2 % del total)<br>     Universal: 13,469 · Reducida: 3,024 ·     Preferencial: 601<br>     Días con entregas: 200<br>     Tarjetas por jornada: 85     </div>`)[0];
+                popup_5d8cea06f8cc8a3be9657d0a43e99ba8.setContent(html_63d492a9df4d001e42700df1eff11e8f);
+            
+        
+
+        circle_marker_329293b66645fc052e4e3fa48ee559f2.bindPopup(popup_5d8cea06f8cc8a3be9657d0a43e99ba8)
+        ;
+
+        
+    
+    
+            circle_marker_329293b66645fc052e4e3fa48ee559f2.bindTooltip(
+                `<div>
+                     Labrador: 17,094 tarjetas
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b699c6cdf9b5e17b8314f1d7e0dbdbad = L.circleMarker(
+                [-0.2301, -78.5065],
+                {"bubblingMouseEvents": true, "color": "#16324F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#16324F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 27.436589962768128, "stroke": true, "weight": 3}
+            ).addTo(map_7e8e9c786ac38b94e6ca7604602063b2);
+        
+    
+        var popup_68b8458968c83b5147cb8d55a9dc7896 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_df5385d6637d236503aecd9f03ac2de0 = $(`<div id="html_df5385d6637d236503aecd9f03ac2de0" style="width: 100.0%; height: 100.0%;">     <b>Terminal Microregional Playon de la Marin</b><br>     Tipo: Estación<br>     Tarjetas: 10,174 (8.4 % del total)<br>     Universal: 8,487 · Reducida: 1,318 ·     Preferencial: 369<br>     Días con entregas: 200<br>     Tarjetas por jornada: 51     </div>`)[0];
+                popup_68b8458968c83b5147cb8d55a9dc7896.setContent(html_df5385d6637d236503aecd9f03ac2de0);
+            
+        
+
+        circle_marker_b699c6cdf9b5e17b8314f1d7e0dbdbad.bindPopup(popup_68b8458968c83b5147cb8d55a9dc7896)
+        ;
+
+        
+    
+    
+            circle_marker_b699c6cdf9b5e17b8314f1d7e0dbdbad.bindTooltip(
+                `<div>
+                     Playón de la Marín: 10,174 tarjetas
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ce2dcd89f08e1053259655649a03b2fc = L.circleMarker(
+                [-0.2217, -78.5106],
+                {"bubblingMouseEvents": true, "color": "#E07A5F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E07A5F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 17.25780359359556, "stroke": true, "weight": 3}
+            ).addTo(map_7e8e9c786ac38b94e6ca7604602063b2);
+        
+    
+        var popup_698adc51c08e74ed45f89fb985276175 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_550e6afd5c1e72c8230f0f4baa2eeadf = $(`<div id="html_550e6afd5c1e72c8230f0f4baa2eeadf" style="width: 100.0%; height: 100.0%;">     <b>Parada Plaza Chica (Trolebus)</b><br>     Tipo: Evento<br>     Tarjetas: 2,806 (2.3 % del total)<br>     Universal: 2,015 · Reducida: 665 ·     Preferencial: 126<br>     Días con entregas: 37<br>     Tarjetas por jornada: 76     </div>`)[0];
+                popup_698adc51c08e74ed45f89fb985276175.setContent(html_550e6afd5c1e72c8230f0f4baa2eeadf);
+            
+        
+
+        circle_marker_ce2dcd89f08e1053259655649a03b2fc.bindPopup(popup_698adc51c08e74ed45f89fb985276175)
+        ;
+
+        
+    
+    
+            circle_marker_ce2dcd89f08e1053259655649a03b2fc.bindTooltip(
+                `<div>
+                     Plaza Chica: 2,806 tarjetas
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_49fa40c216bbb96a750eebd994e68b07 = L.circleMarker(
+                [-0.2198, -78.5117],
+                {"bubblingMouseEvents": true, "color": "#E07A5F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E07A5F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16.753004236100082, "stroke": true, "weight": 3}
+            ).addTo(map_7e8e9c786ac38b94e6ca7604602063b2);
+        
+    
+        var popup_eaff1a826baf1fbe0ca74af600bee226 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_6ab5d035964b652c394c5c73a80eaa01 = $(`<div id="html_6ab5d035964b652c394c5c73a80eaa01" style="width: 100.0%; height: 100.0%;">     <b>Parada Plaza Grande (Trolebus)</b><br>     Tipo: Evento<br>     Tarjetas: 2,560 (2.1 % del total)<br>     Universal: 1,828 · Reducida: 637 ·     Preferencial: 95<br>     Días con entregas: 12<br>     Tarjetas por jornada: 213     </div>`)[0];
+                popup_eaff1a826baf1fbe0ca74af600bee226.setContent(html_6ab5d035964b652c394c5c73a80eaa01);
+            
+        
+
+        circle_marker_49fa40c216bbb96a750eebd994e68b07.bindPopup(popup_eaff1a826baf1fbe0ca74af600bee226)
+        ;
+
+        
+    
+    
+            circle_marker_49fa40c216bbb96a750eebd994e68b07.bindTooltip(
+                `<div>
+                     Plaza Grande: 2,560 tarjetas
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ffdf5ff348561e054e9d3811b2a4fd37 = L.circleMarker(
+                [-0.2955, -78.5567],
+                {"bubblingMouseEvents": true, "color": "#4F7CAC", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4F7CAC", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.748108488192507, "stroke": true, "weight": 3}
+            ).addTo(map_7e8e9c786ac38b94e6ca7604602063b2);
+        
+    
+        var popup_65dd94c25bc81fa27fe464bde5f3ffd4 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_d4003ad0abe17c113c4db3b62dcfc9db = $(`<div id="html_d4003ad0abe17c113c4db3b62dcfc9db" style="width: 100.0%; height: 100.0%;">     <b>Terminal Terrestre Quitumbe</b><br>     Tipo: Terminal<br>     Tarjetas: 11,457 (9.5 % del total)<br>     Universal: 8,335 · Reducida: 2,724 ·     Preferencial: 398<br>     Días con entregas: 200<br>     Tarjetas por jornada: 57     </div>`)[0];
+                popup_65dd94c25bc81fa27fe464bde5f3ffd4.setContent(html_d4003ad0abe17c113c4db3b62dcfc9db);
+            
+        
+
+        circle_marker_ffdf5ff348561e054e9d3811b2a4fd37.bindPopup(popup_65dd94c25bc81fa27fe464bde5f3ffd4)
+        ;
+
+        
+    
+    
+            circle_marker_ffdf5ff348561e054e9d3811b2a4fd37.bindTooltip(
+                `<div>
+                     Quitumbe: 11,457 tarjetas
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3272a8c0243238254a71f5a9922fc3cb = L.circleMarker(
+                [-0.1637, -78.4728],
+                {"bubblingMouseEvents": true, "color": "#16324F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#16324F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 31.261872961473117, "stroke": true, "weight": 3}
+            ).addTo(map_7e8e9c786ac38b94e6ca7604602063b2);
+        
+    
+        var popup_86b2bcc74488c38fceca40543f59f58e = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_fa650abb7a9562fd0be81db7bfd43bc4 = $(`<div id="html_fa650abb7a9562fd0be81db7bfd43bc4" style="width: 100.0%; height: 100.0%;">     <b>Terminal Interparroquial Rio Coca</b><br>     Tipo: Estación<br>     Tarjetas: 14,129 (11.7 % del total)<br>     Universal: 11,391 · Reducida: 2,295 ·     Preferencial: 443<br>     Días con entregas: 200<br>     Tarjetas por jornada: 71     </div>`)[0];
+                popup_86b2bcc74488c38fceca40543f59f58e.setContent(html_fa650abb7a9562fd0be81db7bfd43bc4);
+            
+        
+
+        circle_marker_3272a8c0243238254a71f5a9922fc3cb.bindPopup(popup_86b2bcc74488c38fceca40543f59f58e)
+        ;
+
+        
+    
+    
+            circle_marker_3272a8c0243238254a71f5a9922fc3cb.bindTooltip(
+                `<div>
+                     Río Coca: 14,129 tarjetas
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>
