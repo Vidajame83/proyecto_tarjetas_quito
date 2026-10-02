@@ -4,12 +4,12 @@ Proyecto final del módulo **Programación y Análisis de Datos (MIACD02P01)** �
 
 Análisis exploratorio de datos (EDA) y dashboard interactivo sobre la entrega de tarjetas de transporte por estación y perfil de tarjeta, para apoyar la **distribución del inventario de tarjetas**.
 
-- **Dashboard:** `https://ENLACE-AL-DASHBOARD.streamlit.app` *(¿se va a publicar?)*
-- **Repositorio:** `https://github.com/USUARIO/proyecto_tarjetas_quito` *(reemplazar cuando se suba al git)*
-- **Integrantes:** [Nombre 1] · [Nombre 2] · [Nombre 3] *(completar)*
+- **Dashboard:** `https://transporte-quito.streamlit.app/`
+- **Repositorio:** `https://github.com/Vidajame83/proyecto_tarjetas_quito`
+- **Integrantes:** Jorge Alexander Pasquel Moreno - Cesar Santiago Bustos Fraga - Victor David Jaramillo Mejía - Ramiro Xavier Teran Subia
 
 ## Contexto y profesión
-**Profesión:** (completar con la profesión del integrante que presto los datos).
+**Profesión:** Analista de Datos, integrante del equipo de gestión del Sistema Integrado de Recaudo de la Empresa Pública Metropolitana de Transporte de Pasajeros Quito..
 
 El sistema Trolebús y Ecovía de Quito entrega tarjetas de tres perfiles (Universal, Reducida y Preferencial) en estaciones, terminales, paradas, eventos y puntos de venta. Cada punto necesita un **stock de tarjetas**, pero la demanda, y la mezcla de perfiles, no es igual en todos los lugares, días ni canales. Un inventario mal repartido deja puntos sin tarjetas y otros con stock inmovilizado.
 
@@ -215,10 +215,10 @@ Requiere **Python 3.11 o superior**. Todos los comandos se ejecutan en una termi
 
 ```bash
 # 1. Clonar el repositorio
-git clone https://github.com/USUARIO/proyecto_tarjetas_quito.git
+git https://github.com/Vidajame83/proyecto_tarjetas_quito
 cd proyecto_tarjetas_quito
 
-# 2. (Recomendado) Crear y activar un entorno virtual propio del proyecto
+# 2. Crear y activar un entorno virtual propio del proyecto
 python -m venv .venv
 .venv\Scripts\activate            # Windows  ·  en Mac/Linux: source .venv/bin/activate
 
@@ -260,7 +260,7 @@ proyecto_tarjetas_quito/
 │   ├── mapa_tarjetas.html          # mapa de burbujas por punto de entrega
 │   └── perfiles_3d.html            # dispersión 3D de los tres perfiles de tarjeta
 └── docs/
-    └── Proyecto_final_Dashboard_EDA.docx   # cargar el documento cuando se tenga
+    └── Proyecto_final_Dashboard_EDA.pdf   # cargar el documento cuando se tenga
 ```
 
 **Cómo se relacionan los archivos:** `data/crudos/` -> `src/limpieza.py` (una sola limpieza) -> la usan tanto `notebooks/01_EDA_tarjetas.ipynb` (análisis) como `dash_app.py` (dashboard).
